@@ -132,6 +132,9 @@ setup(
             'ods = udata.harvest.backends.ods:OdsHarvester',
             'ckan = udata.harvest.backends.ckan:CkanBackend',
             'dcat = udata.harvest.backends.dcat:DcatBackend',
+        ],
+        'udata.linkcheckers': [
+            'no_check = udata.linkchecker.backends:NoCheckLinkchecker',
         ]
     },
     license='GNU AGPLv3+',
