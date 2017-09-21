@@ -5,6 +5,9 @@ import factory
 
 from .models import Dataset, Resource, Checksum, CommunityResource, License
 
+from udata.core.organization.factories import OrganizationFactory
+from udata.core.spatial.factories import SpatialCoverageFactory
+
 
 class DatasetFactory(factory.mongoengine.MongoEngineFactory):
     class Meta:
@@ -13,6 +16,17 @@ class DatasetFactory(factory.mongoengine.MongoEngineFactory):
     title = factory.Faker('sentence')
     description = factory.Faker('text')
     frequency = 'unknown'
+
+    class Params:
+        geo = factory.Trait(
+            spatial=factory.SubFactory(SpatialCoverageFactory)
+        )
+        visible = factory.Trait(
+            resources=factory.LazyAttribute(lambda o: [ResourceFactory()])
+        )
+        org = factory.Trait(
+            organization=factory.SubFactory(OrganizationFactory),
+        )
 
 
 class VisibleDatasetFactory(DatasetFactory):
