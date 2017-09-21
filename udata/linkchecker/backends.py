@@ -32,7 +32,8 @@ def get(name):
     if not selected_linkchecker:
         default_linkchecker = current_app.config.get(
                                 'LINKCHECKING_DEFAULT_LINKCHECKER')
-        log.warning('Linkchecker "{}" not found, using default ({})'.format(
-            name, default_linkchecker))
         selected_linkchecker = linkcheckers.get(default_linkchecker)
+    if not selected_linkchecker:
+        log.error('No linkchecker found ({} requested and no fallback)'.format(
+                  name))
     return selected_linkchecker
