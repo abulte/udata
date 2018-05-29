@@ -1,5 +1,5 @@
-# # -*- coding: utf-8 -*-
-# from __future__ import unicode_literals
+# 
+# 
 
 # from udata.models import Dataset, Organization, Reuse
 # from udata.tests import TestCase, DBTestMixin, factories

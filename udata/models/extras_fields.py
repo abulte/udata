@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+
+
 
 import logging
 
@@ -12,7 +12,7 @@ from mongoengine.fields import DictField
 log = logging.getLogger(__name__)
 
 
-ALLOWED_TYPES = (basestring, int, float, bool, datetime, date, list)
+ALLOWED_TYPES = (str, int, float, bool, datetime, date, list)
 
 
 class ExtrasField(DictField):

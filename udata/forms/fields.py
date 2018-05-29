@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+
+
 
 import uuid
 
@@ -96,7 +96,7 @@ class DateTimeField(Field, fields.DateTimeField):
     def process_formdata(self, valuelist):
         if valuelist:
             dt = valuelist[0]
-            self.data = parse(dt) if isinstance(dt, basestring) else dt
+            self.data = parse(dt) if isinstance(dt, str) else dt
 
 
 class UUIDField(Field):
@@ -356,7 +356,7 @@ class ModelFieldMixin(object):
 
     def _value(self):
         if self.data:
-            return unicode(self.data.id)
+            return str(self.data.id)
         else:
             return ''
 
@@ -375,7 +375,7 @@ class ModelField(Field):
         if valuelist and len(valuelist) == 1 and valuelist[0]:
             specs = valuelist[0]
             model_field = getattr(self._form.model_class, self.name)
-            if isinstance(specs, basestring):
+            if isinstance(specs, str):
                 if isinstance(model_field, db.ReferenceField):
                     specs = {'class': str(model_field.document_type.__name__), 'id': specs}
                 elif isinstance(model_field, db.GenericReferenceField):
@@ -406,7 +406,7 @@ class ModelChoiceField(StringField):
 
     def _value(self):
         if self.data:
-            return unicode(self.data.id)
+            return str(self.data.id)
         else:
             return ''
 
@@ -435,7 +435,7 @@ class ModelList(object):
     def process_formdata(self, valuelist):
         if not valuelist:
             return []
-        if len(valuelist) == 1 and isinstance(valuelist[0], basestring):
+        if len(valuelist) == 1 and isinstance(valuelist[0], str):
             oids = [clean_oid(id, self.model)
                     for id in valuelist[0].split(',') if id]
         else:
@@ -576,7 +576,7 @@ class DateRangeField(Field):
     def process_formdata(self, valuelist):
         if valuelist and valuelist[0]:
             value = valuelist[0]
-            if isinstance(value, basestring):
+            if isinstance(value, str):
                 start, end = value.split(' - ')
                 self.data = db.DateRange(
                     start=parse(start, yearfirst=True).date(),

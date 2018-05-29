@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals, absolute_import
+
+
 
 from udata.tests import TestCase, DBTestMixin
 from udata.core.user.factories import UserFactory, AdminFactory
