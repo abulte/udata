@@ -1,6 +1,3 @@
-
-
-
 from udata.features.identicon.backends import internal
 
 from udata.tests import TestCase, WebTestMixin

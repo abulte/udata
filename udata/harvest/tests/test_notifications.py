@@ -1,6 +1,3 @@
-
-
-
 from udata.tests import TestCase, DBTestMixin
 from udata.core.user.factories import UserFactory, AdminFactory
 
