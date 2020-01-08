@@ -1,7 +1,7 @@
 from flask_security.forms import RegisterForm
 from udata.forms import fields
 from udata.forms import validators
-from udata.i18n import lazy_gettext as _
+from udata.i18n import gettext as _
 
 
 class ExtendedRegisterForm(RegisterForm):
